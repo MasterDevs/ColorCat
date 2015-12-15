@@ -2,4 +2,7 @@
 
 A command line tool to add a little color to your console
 
-This tool will cat a file, but make any lines with "ERROR" red.  More features to come.
+This tool will read from standard input and output colored text to the console.  For now the colors are hardcoded.
+
+![](ScreenShot.png)
+
