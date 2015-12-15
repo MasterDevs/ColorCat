@@ -6,3 +6,5 @@ This tool will read from standard input and output colored text to the console. 
 
 ![](ScreenShot.png)
 
+## Downloads
+[ColorCat](https://github.com/MasterDevs/ColorCat/releases/download/V0.0.1/ColorCat.exe)
