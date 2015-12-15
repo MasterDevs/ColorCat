@@ -1,0 +1,8 @@
+Errors will be red
+Warnings will be yellow
+Fatal errors will be darker red
+Info will not be changed
+Debug will be gray
+ERRORS upper case works too
+
+^^^^^^ Blanks lines aren't a problem ^^^^^^
