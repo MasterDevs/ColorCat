@@ -37,7 +37,7 @@ namespace ColorCat
 
                 case "add":
 
-                    help.AddPostOptionsLine("Valid colorss are:  ");
+                    help.AddPostOptionsLine("Valid colors are:  ");
                     foreach (var color in Enum.GetNames(typeof(ConsoleColor)))
                     {
                         help.AddPostOptionsLine($"  {color}");
