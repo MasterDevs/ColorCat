@@ -50,7 +50,7 @@ Valid colorss are:
   White
 
 Example:
-  colorCat add -i -c red error
+  colorCat add -c red -i error
 ```
 
 ## Downloads
