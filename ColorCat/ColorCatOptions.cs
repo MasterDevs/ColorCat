@@ -22,16 +22,22 @@ namespace ColorCat
             switch (verb)
             {
                 case null:
+                    help.AddPreOptionsLine("To colorize the output of another program (such as tail or cat) simply pipe into colorCat");
+
                     help.AddPostOptionsLine(string.Empty);
                     help.AddPostOptionsLine("For more information on a specific command use --help");
                     help.AddPostOptionsLine("Example:  colorCat add --help");
+
+                    help.AddPostOptionsLine(string.Empty);
+                    help.AddPostOptionsLine("Basic Usage:");
+                    help.AddPostOptionsLine("  > tail -f myLogFile | colorCat");
+
                     help.AddPostOptionsLine(string.Empty);
                     break;
 
                 case "add":
 
                     help.AddPostOptionsLine("Valid colorss are:  ");
-                    help.AddPostOptionsLine(string.Empty);
                     foreach (var color in Enum.GetNames(typeof(ConsoleColor)))
                     {
                         help.AddPostOptionsLine($"  {color}");
@@ -39,7 +45,7 @@ namespace ColorCat
 
                     help.AddPostOptionsLine(string.Empty);
                     help.AddPostOptionsLine("Example:");
-                    help.AddPostOptionsLine("  colorCat add -i -c red error");
+                    help.AddPostOptionsLine("  > colorCat add -i -c red error");
                     help.AddPostOptionsLine(string.Empty);
                     break;
             }
