@@ -9,11 +9,11 @@ namespace ColorCat
         {
             var options = new ColorCatOptions();
 
-            if (CommandLine.Parser.Default.ParseArguments(args, options))
+            if (CommandLine.Parser.Default.ParseArguments(args, options, (_, __) => { }))
             {
-                if (options.Add)
+                if (options.Add != null)
                 {
-                    AddConfig(options);
+                    AddConfig(options.Add);
                 }
                 else
                 {
@@ -55,7 +55,7 @@ namespace ColorCat
             }
         }
 
-        private static void AddConfig(ColorCatOptions options)
+        private static void AddConfig(ColorCatOptions.AddOption options)
         {
             var config = Configuration.Load();
             var newMapping = CreateMapping(options);
@@ -67,7 +67,7 @@ namespace ColorCat
             Console.WriteLine(mappingJson);
         }
 
-        private static ColorMapping CreateMapping(ColorCatOptions options)
+        private static ColorMapping CreateMapping(ColorCatOptions.AddOption options)
         {
             var mapping = new ColorMapping
             {

@@ -8,35 +8,52 @@ namespace ColorCat
 {
     public class ColorCatOptions
     {
-        [Option('a', "add", HelpText = "Add a color mapping to the configuration")]
-        public bool Add { get; set; }
-
-        [Option('c', "color", HelpText = "When adding a color mapping, the color to use for the mapping.  Requires --add to be specified.")]
-        public ConsoleColor Color { get; set; }
-
-        [Option('i', "ignoreCase", HelpText = "When adding a color mapping, ignore case when executing the mapping.  Requires --add to be specified.")]
-        public bool IgnoreCase { get; set; }
-
-        [Option('r', "regex", HelpText = "When adding a color mapping, execute mapping as a regular expression instead of a string compare.  Requires --add to be specified.")]
-        public bool IsRegex { get; set; }
-
-        [ValueList(typeof(List<string>))]
-        public IList<string> Pattern { get; set; }
+        [VerbOption("add", HelpText = "Add a color mapping to the configuration")]
+        public AddOption Add { get; set; }
 
         [HelpOption]
-        public string GetUsage()
+        [HelpVerbOption]
+        public string GetUsage(string verb)
         {
-            var asm = typeof(ColorCatOptions).Assembly;
+            var help = HelpText.AutoBuild(this, verb);
 
-            var help = new HelpText
+            help.AdditionalNewLineAfterOption = true;
+
+            switch (verb)
             {
-                Heading = new HeadingInfo(asm.GetName().Name, asm.GetName().Version.ToString()),
-                AdditionalNewLineAfterOption = true,
-                AddDashesToOption = true
-            };
+                case null:
+                    help.AddPostOptionsLine(string.Empty);
+                    help.AddPostOptionsLine("For more information on a specific command use --help");
+                    help.AddPostOptionsLine("Example:  colorCat add --help");
+                    help.AddPostOptionsLine(string.Empty);
+                    break;
 
-            AddCopyright(help);
-            help.AddOptions(this);
+                case "add":
+
+                    help.AddPostOptionsLine("Valid colorss are:  ");
+                    help.AddPostOptionsLine(string.Empty);
+                    foreach (var color in Enum.GetNames(typeof(ConsoleColor)))
+                    {
+                        help.AddPostOptionsLine($"  {color}");
+                    }
+
+                    help.AddPostOptionsLine(string.Empty);
+                    help.AddPostOptionsLine("Example:");
+                    help.AddPostOptionsLine("  colorCat add -i -c red error");
+                    help.AddPostOptionsLine(string.Empty);
+                    break;
+            }
+
+            if (string.IsNullOrEmpty(verb))
+            {
+                help.AddDashesToOption = false;
+            }
+            else
+            {
+                help.AddDashesToOption = true;
+                help.AddPreOptionsLine(verb);
+            }
+
             return help;
         }
 
@@ -49,6 +66,21 @@ namespace ColorCat
                 var copyright = ((AssemblyCopyrightAttribute)attribs[0]).Copyright;
                 help.AddPreOptionsLine(copyright);
             }
+        }
+
+        public class AddOption
+        {
+            [Option('c', "color", Required = true, HelpText = "The color to use for the mapping.")]
+            public ConsoleColor Color { get; set; }
+
+            [Option('i', "ignoreCase", HelpText = "Ignore case when executing the mapping.")]
+            public bool IgnoreCase { get; set; }
+
+            [Option('r', "regex", HelpText = "Execute mapping as a regular expression instead of a string compare.")]
+            public bool IsRegex { get; set; }
+
+            [ValueList(typeof(List<string>))]
+            public IList<string> Pattern { get; set; }
         }
     }
 }
