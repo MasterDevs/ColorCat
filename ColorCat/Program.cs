@@ -7,22 +7,25 @@ namespace ColorCat
     {
         public static void Main(string[] args)
         {
-            var options = new ColorCatOptions();
-
-            if (CommandLine.Parser.Default.ParseArguments(args, options, (_, __) => { }))
+            if (args == null || args.Length == 0)
             {
-                if (options.Add != null)
+                Run();
+            }
+            else
+            {
+                var options = new ColorCatOptions();
+
+                if (CommandLine.Parser.Default.ParseArguments(args, options, (_, __) => { }))
                 {
-                    AddConfig(options.Add);
-                }
-                else
-                {
-                    Run(options);
+                    if (options.Add != null)
+                    {
+                        AddConfig(options.Add);
+                    }
                 }
             }
         }
 
-        public static void Run(ColorCatOptions options)
+        public static void Run()
         {
             var config = Configuration.Load();
 

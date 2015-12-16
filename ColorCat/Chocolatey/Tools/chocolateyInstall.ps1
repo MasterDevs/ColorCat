@@ -1,5 +1,5 @@
 ﻿$packageName = 'ColorCat.portable' # arbitrary name for the package, used in messages
-$url ="https://github.com/MasterDevs/ColorCat/releases/download/v0.0.3/bin.zip"
+$url ="https://github.com/MasterDevs/ColorCat/releases/download/v0.0.4/bin.zip"
 
 try 
 {
