@@ -45,7 +45,7 @@ namespace ColorCat
 
                     help.AddPostOptionsLine(string.Empty);
                     help.AddPostOptionsLine("Example:");
-                    help.AddPostOptionsLine("  > colorCat add -i -c red error");
+                    help.AddPostOptionsLine("  > colorCat add -c red -i error");
                     help.AddPostOptionsLine(string.Empty);
                     break;
             }
