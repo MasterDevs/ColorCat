@@ -23,6 +23,9 @@ namespace ColorCat
         [ValueList(typeof(List<string>))]
         public IList<string> Pattern { get; set; }
 
+        [Option("saveDefaultConfig", HelpText = "Overwrites the current configuration with the defaults.")]
+        public bool SaveDefaults { get; set; }
+
         [HelpOption]
         public string GetUsage()
         {

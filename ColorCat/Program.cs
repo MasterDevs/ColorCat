@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace ColorCat
@@ -15,6 +14,10 @@ namespace ColorCat
                 if (options.Add)
                 {
                     AddConfig(options);
+                }
+                else if (options.SaveDefaults)
+                {
+                    SaveDefaults();
                 }
                 else
                 {
@@ -84,6 +87,13 @@ namespace ColorCat
             }
 
             return mapping;
+        }
+
+        private static void SaveDefaults()
+        {
+            var mappingJson = Configuration.SaveDefaults();
+            Console.WriteLine("Default mappings saved.  Current mappings are:");
+            Console.WriteLine(mappingJson);
         }
     }
 }
