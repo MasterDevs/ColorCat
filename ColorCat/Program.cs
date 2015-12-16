@@ -63,8 +63,11 @@ namespace ColorCat
 
             var mappingJson = config.Save();
 
-            Console.WriteLine("Added mapping.  Current mappings are:");
-            Console.WriteLine(mappingJson);
+            if (options.Verbose)
+            {
+                Console.WriteLine("Added mapping.  Current mappings are:");
+                Console.WriteLine(mappingJson);
+            }
         }
 
         private static ColorMapping CreateMapping(ColorCatOptions.AddOption options)

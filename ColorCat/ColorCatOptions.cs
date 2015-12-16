@@ -81,6 +81,9 @@ namespace ColorCat
 
             [ValueList(typeof(List<string>))]
             public IList<string> Pattern { get; set; }
+
+            [Option('v', "verbose", HelpText = "Display configuration after the update")]
+            public bool Verbose { get; set; }
         }
     }
 }
