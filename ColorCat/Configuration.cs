@@ -23,7 +23,7 @@ namespace ColorCat
         {
             var location = DefaultLocation;
 
-            if (!File.Exists(location)) return new Configuration { Mappings = new List<ColorMapping>() };
+            if (!File.Exists(location)) SaveDefaults();
 
             string configText;
             using (var r = new StreamReader(location))

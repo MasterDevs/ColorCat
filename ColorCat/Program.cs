@@ -15,10 +15,6 @@ namespace ColorCat
                 {
                     AddConfig(options);
                 }
-                else if (options.SaveDefaults)
-                {
-                    SaveDefaults();
-                }
                 else
                 {
                     Run(options);
@@ -87,13 +83,6 @@ namespace ColorCat
             }
 
             return mapping;
-        }
-
-        private static void SaveDefaults()
-        {
-            var mappingJson = Configuration.SaveDefaults();
-            Console.WriteLine("Default mappings saved.  Current mappings are:");
-            Console.WriteLine(mappingJson);
         }
     }
 }
