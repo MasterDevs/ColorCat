@@ -8,12 +8,12 @@ namespace ColorCat
     {
         public static void Main(string[] args)
         {
-            var colors = new List<Tuple<string, ConsoleColor>>()
+            var mappings = new List<ColorMapping>()
             {
-                new Tuple<string, ConsoleColor>("fatal", ConsoleColor.DarkRed),
-                new Tuple<string, ConsoleColor>("error", ConsoleColor.Red),
-                new Tuple<string, ConsoleColor>("warn", ConsoleColor.Yellow),
-                new Tuple<string, ConsoleColor>("debug", ConsoleColor.DarkGray),
+                new ColorMapping{IsRegex=false, IgnoreCase=true, Pattern="fatal", Color =ConsoleColor.DarkRed},
+                new ColorMapping{IsRegex=false, IgnoreCase=true, Pattern="error", Color =ConsoleColor.Red},
+                new ColorMapping{IsRegex=false, IgnoreCase=true, Pattern="warn", Color =ConsoleColor.Yellow},
+                new ColorMapping{IsRegex=false, IgnoreCase=true, Pattern="debug", Color =ConsoleColor.DarkGray},
             };
 
             bool run = true;
@@ -29,17 +29,16 @@ namespace ColorCat
                     continue;
                 }
 
-                var color = colors.Where(c => input.ToLower().Contains(c.Item1))
-                                  .FirstOrDefault();
+                var mapping = mappings.FirstOrDefault(m => m.IsMatch(input));
 
-                if (color != null)
+                if (mapping != null)
                 {
-                    Console.ForegroundColor = color.Item2;
+                    Console.ForegroundColor = mapping.Color;
                 }
 
                 Console.WriteLine(input);
 
-                if (color != null)
+                if (mapping != null)
                 {
                     Console.ResetColor();
                 }
