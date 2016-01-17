@@ -7,22 +7,25 @@ namespace ColorCat
     {
         public static void Main(string[] args)
         {
-            var options = new ColorCatOptions();
-
-            if (CommandLine.Parser.Default.ParseArguments(args, options))
+            if (args == null || args.Length == 0)
             {
-                if (options.Add)
+                Run();
+            }
+            else
+            {
+                var options = new ColorCatOptions();
+
+                if (CommandLine.Parser.Default.ParseArguments(args, options, (_, __) => { }))
                 {
-                    AddConfig(options);
-                }
-                else
-                {
-                    Run(options);
+                    if (options.Add != null)
+                    {
+                        AddConfig(options.Add);
+                    }
                 }
             }
         }
 
-        public static void Run(ColorCatOptions options)
+        public static void Run()
         {
             var config = Configuration.Load();
 
@@ -55,7 +58,7 @@ namespace ColorCat
             }
         }
 
-        private static void AddConfig(ColorCatOptions options)
+        private static void AddConfig(ColorCatOptions.AddOption options)
         {
             var config = Configuration.Load();
             var newMapping = CreateMapping(options);
@@ -63,11 +66,14 @@ namespace ColorCat
 
             var mappingJson = config.Save();
 
-            Console.WriteLine("Added mapping.  Current mappings are:");
-            Console.WriteLine(mappingJson);
+            if (options.Verbose)
+            {
+                Console.WriteLine("Added mapping.  Current mappings are:");
+                Console.WriteLine(mappingJson);
+            }
         }
 
-        private static ColorMapping CreateMapping(ColorCatOptions options)
+        private static ColorMapping CreateMapping(ColorCatOptions.AddOption options)
         {
             var mapping = new ColorMapping
             {
