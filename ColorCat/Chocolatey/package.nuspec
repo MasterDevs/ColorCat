@@ -12,9 +12,13 @@
     <tags>console color cat colorize command-line</tags>
     <copyright></copyright>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>https://github.com/MasterDevs/ColorCat/releases</releaseNotes>
     <licenseUrl> https://github.com/MasterDevs/ColorCat/blob/master/LICENSE </licenseUrl>
     <projectUrl> https://github.com/MasterDevs/ColorCat </projectUrl>
+    <packageSourceUrl> https://github.com/MasterDevs/ColorCat </packageSourceUrl>
+    <docsUrl>https://github.com/MasterDevs/ColorCat</docsUrl>
+    <bugTrackerUrl>https://github.com/MasterDevs/ColorCat/issues</bugTrackerUrl>
+    <projectSourceUrl> https://github.com/MasterDevs/ColorCat </projectSourceUrl>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
