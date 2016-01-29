@@ -54,4 +54,4 @@ Example:
 ```
 
 ## Downloads
-[ColorCat](https://github.com/MasterDevs/ColorCat/releases/download/V0.0.4/bin.zip)
+[ColorCat](https://github.com/MasterDevs/ColorCat/releases/download/v0.0.4/bin.zip)
